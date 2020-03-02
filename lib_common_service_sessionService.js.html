@@ -1,0 +1,719 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Source: lib/common/service/sessionService.js | Pomelo API</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+    
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="">
+        
+            <img src="img/toast-ui.png" width="100%" height="100%">
+        
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">Pomelo API</a></h1>
+        
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+    
+    <div class="lnb-api hidden"><h3>Modules</h3><ul><li><a href="module-appUtils.html">appUtils</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:appUtils_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-appUtils.html#.defaultConfiguration">defaultConfiguration</a></li><li><a href="module-appUtils.html#.loadDefaultComponents">loadDefaultComponents</a></li><li><a href="module-appUtils.html#.optComponents">optComponents</a></li><li><a href="module-appUtils.html#.startByType">startByType</a></li><li><a href="module-appUtils.html#.stopComps">stopComps</a></li></ul></div></li><li><a href="module-ModuleUtil.html">ModuleUtil</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:ModuleUtil_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-ModuleUtil.html#.loadModules">loadModules</a></li><li><a href="module-ModuleUtil.html#.startModules">startModules</a></li><li><a href="module-ModuleUtil.html#.startModules">startModules</a></li></ul></div></li><li><a href="module-utils.html">utils</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:utils_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-utils.html#.arrayDiff">arrayDiff</a></li><li><a href="module-utils.html#.checkPort">checkPort</a></li><li><a href="module-utils.html#.endsWith">endsWith</a></li><li><a href="module-utils.html#.extends">extends</a></li><li><a href="module-utils.html#.format">format</a></li><li><a href="module-utils.html#.hasChineseChar">hasChineseChar</a></li><li><a href="module-utils.html#.headHandler">headHandler</a></li><li><a href="module-utils.html#.invokeCallback">invokeCallback</a></li><li><a href="module-utils.html#.isLocal">isLocal</a></li><li><a href="module-utils.html#.isObject">isObject</a></li><li><a href="module-utils.html#.loadCluster">loadCluster</a></li><li><a href="module-utils.html#.ping">ping</a></li><li><a href="module-utils.html#.size">size</a></li><li><a href="module-utils.html#.startsWith">startsWith</a></li><li><a href="module-utils.html#.unicodeToUtf8">unicodeToUtf8</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="Application.html">Application</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Application_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="Application.html#.STATE_INITED">STATE_INITED</a></li><li><a href="Application.html#.STATE_START">STATE_START</a></li><li><a href="Application.html#.STATE_STARTED">STATE_STARTED</a></li><li><a href="Application.html#.STATE_STOPED">STATE_STOPED</a></li><li><a href="Application.html#backendSessionService">backendSessionService</a></li><li><a href="Application.html#channelService">channelService</a></li><li><a href="Application.html#components">components</a></li><li><a href="Application.html#curServer">curServer</a></li><li><a href="Application.html#mode">mode</a></li><li><a href="Application.html#serverId">serverId</a></li><li><a href="Application.html#serverType">serverType</a></li><li><a href="Application.html#sessionService">sessionService</a></li><li><a href="Application.html#startTime">startTime</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="Application.html#.this.rpcInvoke">this.rpcInvoke</a></li><li><a href="Application.html#addCrons">addCrons</a></li><li><a href="Application.html#addServers">addServers</a></li><li><a href="Application.html#after">after</a></li><li><a href="Application.html#afterStart">afterStart</a></li><li><a href="Application.html#before">before</a></li><li><a href="Application.html#beforeStopHook">beforeStopHook</a></li><li><a href="Application.html#configure">configure</a></li><li><a href="Application.html#configureLogger">configureLogger</a></li><li><a href="Application.html#disable">disable</a></li><li><a href="Application.html#disabled">disabled</a></li><li><a href="Application.html#enable">enable</a></li><li><a href="Application.html#enabled">enabled</a></li><li><a href="Application.html#filter">filter</a></li><li><a href="Application.html#get">get</a></li><li><a href="Application.html#getBackendSessionService">getBackendSessionService</a></li><li><a href="Application.html#getBase">getBase</a></li><li><a href="Application.html#getChannelService">getChannelService</a></li><li><a href="Application.html#getCurServer">getCurServer</a></li><li><a href="Application.html#getMaster">getMaster</a></li><li><a href="Application.html#getRoutes">getRoutes</a></li><li><a href="Application.html#getServerById">getServerById</a></li><li><a href="Application.html#getServerFromConfig">getServerFromConfig</a></li><li><a href="Application.html#getServerId">getServerId</a></li><li><a href="Application.html#getServers">getServers</a></li><li><a href="Application.html#getServersByType">getServersByType</a></li><li><a href="Application.html#getServersFromConfig">getServersFromConfig</a></li><li><a href="Application.html#getServerType">getServerType</a></li><li><a href="Application.html#getServerTypes">getServerTypes</a></li><li><a href="Application.html#getSessionService">getSessionService</a></li><li><a href="Application.html#globalAfter">globalAfter</a></li><li><a href="Application.html#globalBefore">globalBefore</a></li><li><a href="Application.html#globalFilter">globalFilter</a></li><li><a href="Application.html#init">init</a></li><li><a href="Application.html#isBackend">isBackend</a></li><li><a href="Application.html#isFrontend">isFrontend</a></li><li><a href="Application.html#isMaster">isMaster</a></li><li><a href="Application.html#load">load</a></li><li><a href="Application.html#loadConfig">loadConfig</a></li><li><a href="Application.html#loadConfigBaseApp">loadConfigBaseApp</a></li><li><a href="Application.html#registerAdmin">registerAdmin</a></li><li><a href="Application.html#removeCrons">removeCrons</a></li><li><a href="Application.html#removeServers">removeServers</a></li><li><a href="Application.html#replaceServers">replaceServers</a></li><li><a href="Application.html#require">require</a></li><li><a href="Application.html#route">route</a></li><li><a href="Application.html#rpcAfter">rpcAfter</a></li><li><a href="Application.html#rpcBefore">rpcBefore</a></li><li><a href="Application.html#rpcFilter">rpcFilter</a></li><li><a href="Application.html#set">set</a></li><li><a href="Application.html#start">start</a></li><li><a href="Application.html#stop">stop</a></li><li><a href="Application.html#transaction">transaction</a></li><li><a href="Application.html#use">use</a></li></ul></div></li><li><a href="BackendSession.html">BackendSession</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="BackendSession_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="BackendSession.html#bind">bind</a></li><li><a href="BackendSession.html#export">export</a></li><li><a href="BackendSession.html#get">get</a></li><li><a href="BackendSession.html#push">push</a></li><li><a href="BackendSession.html#pushAll">pushAll</a></li><li><a href="BackendSession.html#set">set</a></li><li><a href="BackendSession.html#unbind">unbind</a></li></ul></div></li><li><a href="BackendSessionService.html">BackendSessionService</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="BackendSessionService_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="BackendSessionService.html#bind">bind</a></li><li><a href="BackendSessionService.html#get">get</a></li><li><a href="BackendSessionService.html#getByUid">getByUid</a></li><li><a href="BackendSessionService.html#kickBySid">kickBySid</a></li><li><a href="BackendSessionService.html#kickByUid">kickByUid</a></li><li><a href="BackendSessionService.html#push">push</a></li><li><a href="BackendSessionService.html#pushAll">pushAll</a></li><li><a href="BackendSessionService.html#unbind">unbind</a></li></ul></div></li><li><a href="BaseComponent.html">BaseComponent</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="BaseComponent_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="BaseComponent.html#afterStart">afterStart</a></li><li><a href="BaseComponent.html#start">start</a></li><li><a href="BaseComponent.html#stop">stop</a></li></ul></div></li><li><a href="BaseCron.html">BaseCron</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="BaseCron_sub"></div></li><li><a href="BaseFilter.html">BaseFilter</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="BaseFilter_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="BaseFilter.html#after">after</a></li><li><a href="BaseFilter.html#before">before</a></li></ul></div></li><li><a href="BaseGameHandler.html">BaseGameHandler</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="BaseGameHandler_sub"></div></li><li><a href="BaseGameRemote.html">BaseGameRemote</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="BaseGameRemote_sub"></div></li><li><a href="BaseLifecycle.html">BaseLifecycle</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="BaseLifecycle_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="BaseLifecycle.html#.afterStartAll">afterStartAll</a></li><li><a href="BaseLifecycle.html#.afterStartup">afterStartup</a></li><li><a href="BaseLifecycle.html#.beforeShutdown">beforeShutdown</a></li><li><a href="BaseLifecycle.html#.beforeStartup">beforeStartup</a></li></ul></div></li><li><a href="Channel.html">Channel</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Channel_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Channel.html#add">add</a></li><li><a href="Channel.html#destroy">destroy</a></li><li><a href="Channel.html#getMember">getMember</a></li><li><a href="Channel.html#getMembers">getMembers</a></li><li><a href="Channel.html#getUserAmount">getUserAmount</a></li><li><a href="Channel.html#leave">leave</a></li><li><a href="Channel.html#pushMessage">pushMessage</a></li></ul></div></li><li><a href="ChannelService.html">ChannelService</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ChannelService_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ChannelService.html#broadcast">broadcast</a></li><li><a href="ChannelService.html#createChannel">createChannel</a></li><li><a href="ChannelService.html#destroyChannel">destroyChannel</a></li><li><a href="ChannelService.html#getChannel">getChannel</a></li><li><a href="ChannelService.html#pushMessageByUids">pushMessageByUids</a></li></ul></div></li><li><a href="ComponentDictionary.html">ComponentDictionary</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ComponentDictionary_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ComponentDictionary.html#start">start</a></li></ul></div></li><li><a href="ComponentProtobuf.html">ComponentProtobuf</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ComponentProtobuf_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ComponentProtobuf.html#stop">stop</a></li></ul></div></li><li><a href="ComponentProxy.html">ComponentProxy</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ComponentProxy_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ComponentProxy.html#addServers">addServers</a></li><li><a href="ComponentProxy.html#afterStart">afterStart</a></li><li><a href="ComponentProxy.html#removeServers">removeServers</a></li><li><a href="ComponentProxy.html#replaceServers">replaceServers</a></li><li><a href="ComponentProxy.html#rpcInvoke">rpcInvoke</a></li><li><a href="ComponentProxy.html#start">start</a></li></ul></div></li><li><a href="ComponentPushScheduler.html">ComponentPushScheduler</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ComponentPushScheduler_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ComponentPushScheduler.html#afterStart">afterStart</a></li><li><a href="ComponentPushScheduler.html#schedule">schedule</a></li><li><a href="ComponentPushScheduler.html#stop">stop</a></li></ul></div></li><li><a href="ComponentRemote.html">ComponentRemote</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ComponentRemote_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ComponentRemote.html#start">start</a></li><li><a href="ComponentRemote.html#stop">stop</a></li></ul></div></li><li><a href="ComponentSession.html">ComponentSession</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ComponentSession_sub"></div></li><li><a href="Connection.html">Connection</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Connection_sub"></div></li><li><a href="ConnectionService.html">ConnectionService</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ConnectionService_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ConnectionService.html#addLoginedUser">addLoginedUser</a></li><li><a href="ConnectionService.html#decreaseConnectionCount">decreaseConnectionCount</a></li><li><a href="ConnectionService.html#getConnectionInfo">getConnectionInfo</a></li><li><a href="ConnectionService.html#getStatisticsInfo">getStatisticsInfo</a></li><li><a href="ConnectionService.html#increaseConnectionCount">increaseConnectionCount</a></li><li><a href="ConnectionService.html#removeLoginedUser">removeLoginedUser</a></li><li><a href="ConnectionService.html#updateUserInfo">updateUserInfo</a></li></ul></div></li><li><a href="Connector.html">Connector</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Connector_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="Connector.html#.decode">decode</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="Connector.html#afterStart">afterStart</a></li><li><a href="Connector.html#start">start</a></li><li><a href="Connector.html#start">start</a></li><li><a href="Connector.html#start">start</a></li><li><a href="Connector.html#stop">stop</a></li></ul></div></li><li><a href="CountDownLatch.html">CountDownLatch</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="CountDownLatch_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="CountDownLatch.html#done">done</a></li></ul></div></li><li><a href="FilterHandlerSerial.html">FilterHandlerSerial</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="FilterHandlerSerial_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="FilterHandlerSerial.html#after">after</a></li><li><a href="FilterHandlerSerial.html#before">before</a></li></ul></div></li><li><a href="FilterHandlerTime.html">FilterHandlerTime</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="FilterHandlerTime_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="FilterHandlerTime.html#after">after</a></li><li><a href="FilterHandlerTime.html#before">before</a></li></ul></div></li><li><a href="FilterHandlerTimeout.html">FilterHandlerTimeout</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="FilterHandlerTimeout_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="FilterHandlerTimeout.html#after">after</a></li><li><a href="FilterHandlerTimeout.html#before">before</a></li></ul></div></li><li><a href="FilterHandlerTooBusy.html">FilterHandlerTooBusy</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="FilterHandlerTooBusy_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="FilterHandlerTooBusy.html#before">before</a></li></ul></div></li><li><a href="FilterRpcLog.html">FilterRpcLog</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="FilterRpcLog_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="FilterRpcLog.html#after">after</a></li><li><a href="FilterRpcLog.html#before">before</a></li></ul></div></li><li><a href="FilterToobusy.html">FilterToobusy</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="FilterToobusy_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="FilterToobusy.html#before">before</a></li></ul></div></li><li><a href="FrontendSession.html">FrontendSession</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="FrontendSession_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="FrontendSession.html#export">export</a></li></ul></div></li><li><a href="HandlerService.html">HandlerService</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="HandlerService_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="HandlerService.html#getHandler">getHandler</a></li><li><a href="HandlerService.html#handle">handle</a></li></ul></div></li><li><a href="MasterComp.html">MasterComp</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MasterComp_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MasterComp.html#start">start</a></li><li><a href="MasterComp.html#stop">stop</a></li></ul></div></li><li><a href="Monitor.html">Monitor</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Monitor_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Monitor.html#start">start</a></li><li><a href="Monitor.html#stop">stop</a></li></ul></div></li><li><a href="MonitorComp.html">MonitorComp</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonitorComp_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonitorComp.html#start">start</a></li><li><a href="MonitorComp.html#stop">stop</a></li></ul></div></li><li><a href="Pomelo.html">Pomelo</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Pomelo_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="Pomelo.html#components">components</a></li><li><a href="Pomelo.html#connectors">connectors</a></li><li><a href="Pomelo.html#events">events</a></li><li><a href="Pomelo.html#filters">filters</a></li><li><a href="Pomelo.html#pushSchedulers">pushSchedulers</a></li><li><a href="Pomelo.html#rpcFilters">rpcFilters</a></li><li><a href="Pomelo.html#version">version</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="Pomelo.html#createApp">createApp</a></li></ul></div></li><li><a href="Server.html">Server</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Server_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Server.html#addCrons">addCrons</a></li><li><a href="Server.html#globalHandle">globalHandle</a></li><li><a href="Server.html#handle">handle</a></li><li><a href="Server.html#removeCrons">removeCrons</a></li><li><a href="Server.html#start">start</a></li><li><a href="Server.html#stop">stop</a></li></ul></div></li><li><a href="ServerComp.html">ServerComp</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ServerComp_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ServerComp.html#afterStart">afterStart</a></li><li><a href="ServerComp.html#globalHandle">globalHandle</a></li><li><a href="ServerComp.html#handle">handle</a></li><li><a href="ServerComp.html#start">start</a></li><li><a href="ServerComp.html#stop">stop</a></li></ul></div></li><li><a href="ServiceFilter.html">ServiceFilter</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ServiceFilter_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ServiceFilter.html#after">after</a></li><li><a href="ServiceFilter.html#afterFilter">afterFilter</a></li><li><a href="ServiceFilter.html#before">before</a></li><li><a href="ServiceFilter.html#beforeFilter">beforeFilter</a></li></ul></div></li><li><a href="Session.html">Session</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Session_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Session.html#bind">bind</a></li><li><a href="Session.html#closed">closed</a></li><li><a href="Session.html#get">get</a></li><li><a href="Session.html#remove">remove</a></li><li><a href="Session.html#send">send</a></li><li><a href="Session.html#sendBatch">sendBatch</a></li><li><a href="Session.html#set">set</a></li><li><a href="Session.html#unbind">unbind</a></li></ul></div></li><li><a href="SessionService.html">SessionService</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="SessionService_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="SessionService.html#bind">bind</a></li><li><a href="SessionService.html#create">create</a></li><li><a href="SessionService.html#forEachBindedSession">forEachBindedSession</a></li><li><a href="SessionService.html#forEachSession">forEachSession</a></li><li><a href="SessionService.html#get">get</a></li><li><a href="SessionService.html#getByUid">getByUid</a></li><li><a href="SessionService.html#getClientAddressBySessionId">getClientAddressBySessionId</a></li><li><a href="SessionService.html#getSessionsCount">getSessionsCount</a></li><li><a href="SessionService.html#import">import</a></li><li><a href="SessionService.html#importAll">importAll</a></li><li><a href="SessionService.html#kick">kick</a></li><li><a href="SessionService.html#kickBySessionId">kickBySessionId</a></li><li><a href="SessionService.html#remove">remove</a></li><li><a href="SessionService.html#sendMessage">sendMessage</a></li><li><a href="SessionService.html#sendMessageByUid">sendMessageByUid</a></li><li><a href="SessionService.html#unbind">unbind</a></li></ul></div></li><li><a href="global.html#Socket">Socket</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Socket_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="global.html#Socket#disconnect">disconnect</a></li><li><a href="global.html#Socket#handshakeResponse">handshakeResponse</a></li><li><a href="global.html#Socket#send">send</a></li><li><a href="global.html#Socket#send">send</a></li><li><a href="global.html#Socket#sendBatch">sendBatch</a></li><li><a href="global.html#Socket#sendForce">sendForce</a></li><li><a href="global.html#Socket#sendRaw">sendRaw</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Namespaces</h3><ul><li><a href="SexPomelo.html">SexPomelo</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="SexPomelo_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="SexPomelo.html#Application">Application</a></li><li><a href="SexPomelo.html#BaseComponent">BaseComponent</a></li><li><a href="SexPomelo.html#BaseFilter">BaseFilter</a></li><li><a href="SexPomelo.html#Cron">Cron</a></li><li><a href="SexPomelo.html#GameHandler">GameHandler</a></li><li><a href="SexPomelo.html#GameRemote">GameRemote</a></li><li><a href="SexPomelo.html#Lifecycle">Lifecycle</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Interfaces</h3><ul><li><a href="Component.html">Component</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Component_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Component.html#afterStart">afterStart</a></li><li><a href="Component.html#start">start</a></li><li><a href="Component.html#stop">stop</a></li></ul></div></li><li><a href="Filter.html">Filter</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Filter_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Filter.html#after">after</a></li><li><a href="Filter.html#before">before</a></li></ul></div></li><li><a href="LifeCycle.html">LifeCycle</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="LifeCycle_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="LifeCycle.html#afterStartAll">afterStartAll</a></li><li><a href="LifeCycle.html#afterStartup">afterStartup</a></li><li><a href="LifeCycle.html#beforeShutdown">beforeShutdown</a></li><li><a href="LifeCycle.html#beforeStartup">beforeStartup</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Global</h3><ul><li class="hidden"><a href="global.html#AutoFilters">AutoFilters</a></li><li class="hidden"><a href="global.html#AutoRpcFilters">AutoRpcFilters</a></li><li><a href="global.html#Command">Command</a></li><li><a href="global.html#configure">configure</a></li><li><a href="global.html#create">create</a></li><li class="hidden"><a href="global.html#DefaultComponents">DefaultComponents</a></li><li class="hidden"><a href="global.html#DefaultConnectors">DefaultConnectors</a></li><li><a href="global.html#Processor">Processor</a></li><li class="hidden"><a href="global.html#ServerInfo">ServerInfo</a></li><li><a href="global.html#Switcher">Switcher</a></li></ul></div>
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+
+const EventEmitter = require('events').EventEmitter;
+const util = require('util');
+const logger = require('@sex-pomelo/sex-pomelo-logger').getLogger('pomelo', __filename);
+const utils = require('../../util/utils');
+
+const FRONTEND_SESSION_FIELDS = ['id', 'frontendId', 'uid', '__sessionService__'];
+const EXPORTED_SESSION_FIELDS = ['id', 'frontendId', 'uid', 'settings'];
+
+const ST_INITED = 0;
+const ST_CLOSED = 1;
+
+/**
+ * Session service maintains the internal session for each client connection.
+ *
+ * Session service is created by session component and is only
+ * &lt;b>available&lt;/b> in frontend servers. You can access the service by
+ * `app.get('sessionService')` or `app.sessionService` in frontend servers.
+ *
+ * @param {Object} opts constructor parameters
+ * @class
+ * @constructor
+ */
+let SessionService = function(opts) {
+  opts = opts || {};
+  this.singleSession = opts.singleSession;
+  this.sessions = {};     // sid -> session
+  this.uidMap = {};       // uid -> sessions
+};
+
+module.exports = SessionService;
+
+/**
+ * Create and return internal session.
+ *
+ * @param {Integer} sid uniqe id for the internal session 
+ * @param {String} frontendId frontend server in which the internal session is created 
+ * @param {Object} socket the underlying socket would be held by the internal session  
+ *
+ * @return {Session}
+ *
+ * @memberOf SessionService
+ * @api private
+ */
+SessionService.prototype.create = function(sid, frontendId, socket) {
+  let session = new Session(sid, frontendId, socket, this);
+  this.sessions[session.id] = session;
+
+  return session;
+};
+
+/**
+ * Bind the session with a user id.
+ *
+ * @memberOf SessionService
+ * @api private
+ */
+SessionService.prototype.bind = function(sid, uid, cb) {
+  let session = this.sessions[sid];
+
+  if(!session) {
+    process.nextTick(function() {
+      cb(new Error('session does not exist, sid: ' + sid));
+    });
+    return;
+  }
+
+  if(session.uid) {
+    if(session.uid === uid) {
+      // already bound with the same uid
+      cb();
+      return;
+    }
+
+    // already bound with other uid
+    process.nextTick(function() {
+      cb(new Error('session has already bind with ' + session.uid));
+    });
+    return;
+  }
+
+  let sessions = this.uidMap[uid];
+
+  if(!!this.singleSession &amp;&amp; !!sessions) {
+    process.nextTick(function() {
+      cb(new Error('singleSession is enabled, and session has already bind with uid: ' + uid));
+    });
+    return;
+  }
+
+  if(!sessions) {
+    sessions = this.uidMap[uid] = [];
+  }
+
+  for(let i=0, l=sessions.length; i&lt;l; i++) {
+    // session has binded with the uid
+    if(sessions[i].id === session.id) {
+      process.nextTick(cb);
+      return;
+    }
+  }
+  sessions.push(session);
+
+  session.bind(uid);
+
+  if(cb) {
+    process.nextTick(cb);
+  }
+};
+
+/**
+ * Unbind a session with the user id.
+ *
+ * @memberOf SessionService
+ * @api private
+ */
+SessionService.prototype.unbind = function(sid, uid, cb) {
+  let session = this.sessions[sid];
+
+  if(!session) {
+    process.nextTick(function() {
+      cb(new Error('session does not exist, sid: ' + sid));
+    });
+    return;
+  }
+
+  if(!session.uid || session.uid !== uid) {
+    process.nextTick(function() {
+      cb(new Error('session has not bind with ' + session.uid));
+    });
+    return;
+  }
+
+  let sessions = this.uidMap[uid], sess;
+  if(sessions) {
+    for(let i=0, l=sessions.length; i&lt;l; i++) {
+      sess = sessions[i];
+      if(sess.id === sid) {
+        sessions.splice(i, 1);
+        break;
+      }
+    }
+
+    if(sessions.length === 0) {
+      delete this.uidMap[uid];
+    }
+  }
+  session.unbind(uid);
+
+  if(cb) {
+    process.nextTick(cb);
+  }
+};
+
+/**
+ * Get session by id.
+ *
+ * @param {Number} id The session id
+ * @return {Session}
+ *
+ * @memberOf SessionService
+ * @api private
+ */
+SessionService.prototype.get = function(sid) {
+  return this.sessions[sid];
+};
+
+/**
+ * Get sessions by userId.
+ *
+ * @param {Number} uid User id associated with the session
+ * @return {Array} list of session binded with the uid
+ *
+ * @memberOf SessionService
+ * @api private
+ */
+SessionService.prototype.getByUid = function(uid) {
+  return this.uidMap[uid];
+};
+
+/**
+ * Remove session by key.
+ *
+ * @param {Number} sid The session id
+ *
+ * @memberOf SessionService
+ * @api private
+ */
+SessionService.prototype.remove = function(sid) {
+  let session = this.sessions[sid];
+  if(session) {
+    let uid = session.uid;
+    delete this.sessions[session.id];
+
+    let sessions = this.uidMap[uid];
+    if(!sessions) {
+      return;
+    }
+
+    for(let i=0, l=sessions.length; i&lt;l; i++) {
+      if(sessions[i].id === sid) {
+        sessions.splice(i, 1);
+        if(sessions.length === 0) {
+          delete this.uidMap[uid];
+        }
+        break;
+      }
+    }
+  }
+};
+
+/**
+ * Import the key/value into session.
+ *
+ * @api private
+ */
+SessionService.prototype.import = function(sid, key, value, cb) {
+  let session = this.sessions[sid];
+  if(!session) {
+    utils.invokeCallback(cb, new Error('session does not exist, sid: ' + sid));
+    return;
+  }
+  session.set(key, value);
+  utils.invokeCallback(cb);
+};
+
+/**
+ * Import new value for the existed session.
+ *
+ * @memberOf SessionService
+ * @api private
+ */
+SessionService.prototype.importAll = function(sid, settings, cb) {
+  let session = this.sessions[sid];
+  if(!session) {
+    utils.invokeCallback(cb, new Error('session does not exist, sid: ' + sid));
+    return;
+  }
+
+  for(let f in settings) {
+    session.set(f, settings[f]);
+  }
+  utils.invokeCallback(cb);
+};
+
+/**
+ * Kick all the session offline under the user id.
+ *
+ * @param {Number}   uid user id asscociated with the session
+ * @param {Function} cb  callback function
+ *
+ * @memberOf SessionService
+ */
+SessionService.prototype.kick = function(uid, reason, cb) {
+  // compatible for old kick(uid, cb);
+  if(typeof reason === 'function') {
+    cb = reason;
+    reason = 'kick';
+  }
+  let sessions = this.uidMap[uid];;
+
+  if(sessions) {
+    // notify client
+    let sids = [];
+    let self = this;
+    sessions.forEach(function(session) {
+      sids.push(session.id);
+    });
+
+    sids.forEach(function(sid) {
+      self.sessions[sid].closed(reason);
+    });
+
+    process.nextTick(function() {
+      utils.invokeCallback(cb);
+    });
+  } else {
+    process.nextTick(function() {
+      utils.invokeCallback(cb);
+    });
+  }
+};
+
+/**
+ * Kick a user offline by session id.
+ *
+ * @param {Number}   sid session id
+ * @param {Function} cb  callback function
+ *
+ * @memberOf SessionService
+ */
+SessionService.prototype.kickBySessionId = function(sid, reason, cb) {
+  if(typeof reason === 'function') {
+    cb = reason;
+    reason = 'kick';
+  }
+
+  let session = this.get(sid);
+
+  if(session) {
+    // notify client
+    session.closed(reason);
+    process.nextTick(function() {
+      utils.invokeCallback(cb);
+    });
+  } else {
+    process.nextTick(function() {
+      utils.invokeCallback(cb);
+    });
+  }
+};
+
+/**
+ * Get client remote address by session id.
+ *
+ * @param {Number}   sid session id
+ * @return {Object} remote address of client
+ *
+ * @memberOf SessionService
+ */
+ SessionService.prototype.getClientAddressBySessionId = function(sid) {
+   let session = this.get(sid);
+   if(session) {
+      let socket = session.__socket__;
+      return socket.remoteAddress;
+   } else {
+      return null;
+   }
+ };
+
+/**
+ * Send message to the client by session id.
+ *
+ * @param {String} sid session id
+ * @param {Object} msg message to send
+ *
+ * @memberOf SessionService
+ * @api private
+ */
+SessionService.prototype.sendMessage = function(sid, msg) {
+  let session = this.get(sid);
+
+  if(!session) {
+    logger.debug('Fail to send message for non-existing session, sid: ' + sid + ' msg: ' + msg);
+    return false;
+  }
+
+  return send(this, session, msg);
+};
+
+/**
+ * Send message to the client by user id.
+ *
+ * @param {String} uid userId
+ * @param {Object} msg message to send
+ *
+ * @memberOf SessionService
+ * @api private
+ */
+SessionService.prototype.sendMessageByUid = function(uid, msg) {
+  let sessions = this.uidMap[uid];
+
+  if(!sessions) {
+    logger.debug('fail to send message by uid for non-existing session. uid: %j',
+        uid);
+    return false;
+  }
+
+  for(let i=0, l=sessions.length; i&lt;l; i++) {
+    send(this, sessions[i], msg);
+  }
+
+  return true;
+};
+
+/**
+ * Iterate all the session in the session service.
+ *
+ * @param  {Function} cb callback function to fetch session
+ * @api private
+ */
+SessionService.prototype.forEachSession = function(cb) {
+  for(let sid in this.sessions) {
+    cb(this.sessions[sid]);
+  }
+};
+
+/**
+ * Iterate all the binded session in the session service.
+ *
+ * @param  {Function} cb callback function to fetch session
+ * @api private
+ */
+SessionService.prototype.forEachBindedSession = function(cb) {
+  let i, l, sessions;
+  for(let uid in this.uidMap) {
+    sessions = this.uidMap[uid];
+    for(i=0, l=sessions.length; i&lt;l; i++) {
+      cb(sessions[i]);
+    }
+  }
+};
+
+/**
+ * Get sessions' quantity in specified server.
+ *
+ */
+SessionService.prototype.getSessionsCount = function() {
+  return utils.size(this.sessions);
+};
+
+/**
+ * Send message to the client that associated with the session.
+ * @access private
+ * @api private
+ */
+let send = function(service, session, msg) {
+  session.send(msg);
+
+  return true;
+};
+
+/**
+ * Session maintains the relationship between client connection and user information.
+ * There is a session associated with each client connection. And it should bind to a
+ * user id after the client passes the identification.
+ *
+ * Session is created in frontend server and should not be accessed in handler.
+ * There is a proxy class called BackendSession in backend servers and FrontendSession 
+ * in frontend servers.
+ * 
+ * @class
+ * @constructor
+ */
+let Session = function(sid, frontendId, socket, service) {
+  EventEmitter.call(this);
+  this.id = sid;          // r
+  this.frontendId = frontendId; // r
+  this.uid = null;        // r
+  this.settings = {};
+
+  // private
+  this.__socket__ = socket;
+  this.__sessionService__ = service;
+  this.__state__ = ST_INITED;
+};
+
+util.inherits(Session, EventEmitter);
+
+/*
+ * Export current session as frontend session.
+ */
+Session.prototype.toFrontendSession = function() {
+  return new FrontendSession(this);
+};
+
+/**
+ * Bind the session with the the uid.
+ *
+ * @param {Number} uid User id
+ * @api public
+ */
+Session.prototype.bind = function(uid) {
+  this.uid = uid;
+  this.emit('bind', uid);
+};
+
+/**
+ * Unbind the session with the the uid.
+ *
+ * @param {Number} uid User id
+ * @api private
+ */
+Session.prototype.unbind = function(uid) {
+  this.uid = null;
+  this.emit('unbind', uid);
+};
+
+/**
+ * Set values (one or many) for the session.
+ *
+ * @param {String|Object} key session key
+ * @param {Object} value session value
+ * @api public
+ */
+Session.prototype.set = function(key, value) {
+  if (utils.isObject(key)) {
+    for (let i in key) {
+      this.settings[i] = key[i];
+    }
+  } else {
+    this.settings[key] = value;
+  }
+};
+
+/**
+ * Remove value from the session.
+ *
+ * @param {String} key session key
+ * @api public
+ */
+ Session.prototype.remove = function(key) {
+  delete this[key];
+};
+
+/**
+ * Get value from the session.
+ *
+ * @param {String} key session key
+ * @return {Object} value associated with session key
+ * @api public
+ */
+Session.prototype.get = function(key) {
+  return this.settings[key];
+};
+
+/**
+ * Send message to the session.
+ *
+ * @param  {Object} msg final message sent to client
+ */
+Session.prototype.send = function(msg) {
+  this.__socket__.send(msg);
+};
+
+/**
+ * Send message to the session in batch.
+ *
+ * @param  {Array} msgs list of message
+ */
+Session.prototype.sendBatch = function(msgs) {
+  this.__socket__.sendBatch(msgs);
+};
+
+/**
+ * Closed callback for the session which would disconnect client in next tick.
+ *
+ * @api public
+ */
+Session.prototype.closed = function(reason) {
+  logger.debug('session on [%s] is closed with session id: %s', this.frontendId, this.id);
+  if(this.__state__ === ST_CLOSED) {
+    return;
+  }
+  this.__state__ = ST_CLOSED;
+  this.__sessionService__.remove(this.id);
+  this.emit('closed', this.toFrontendSession(), reason);
+  this.__socket__.emit('closing', reason);
+
+  let self = this;
+  // give a chance to send disconnect message to client
+
+  process.nextTick(function() {
+    self.__socket__.disconnect();
+  });
+};
+
+/**
+ * Frontend session for frontend server.
+ * 
+ * @class
+ * @constructor
+ */
+let FrontendSession = function(session) {
+  EventEmitter.call(this);
+  clone(session, this, FRONTEND_SESSION_FIELDS);
+  // deep copy for settings
+  this.settings = dclone(session.settings);
+  this.__session__ = session;
+};
+
+util.inherits(FrontendSession, EventEmitter);
+
+FrontendSession.prototype.bind = function(uid, cb) {
+  let self = this;
+  this.__sessionService__.bind(this.id, uid, function(err) {
+    if(!err) {
+      self.uid = uid;
+    }
+    utils.invokeCallback(cb, err);
+  });
+};
+
+FrontendSession.prototype.unbind = function(uid, cb) {
+  let self = this;
+  this.__sessionService__.unbind(this.id, uid, function(err) {
+    if(!err) {
+      self.uid = null;
+    }
+    utils.invokeCallback(cb, err);
+  });
+};
+
+FrontendSession.prototype.set = function(key, value) {
+  this.settings[key] = value;
+};
+
+FrontendSession.prototype.get = function(key) {
+  return this.settings[key];
+};
+
+FrontendSession.prototype.push = function(key, cb) {
+  this.__sessionService__.import(this.id, key, this.get(key), cb);
+};
+
+FrontendSession.prototype.pushAll = function(cb) {
+  this.__sessionService__.importAll(this.id, this.settings, cb);
+};
+
+FrontendSession.prototype.on = function(event, listener) {
+  EventEmitter.prototype.on.call(this, event, listener);
+  this.__session__.on(event, listener);
+};
+
+/**
+ * Export the key/values for serialization.
+ *
+ * @api private
+ */
+FrontendSession.prototype.export = function() {
+  let res = {};
+  clone(this, res, EXPORTED_SESSION_FIELDS);
+  return res;
+};
+
+let clone = function(src, dest, includes) {
+  let f;
+  for(let i=0, l=includes.length; i&lt;l; i++) {
+    f = includes[i];
+    dest[f] = src[f];
+  }
+};
+
+let dclone = function(src) {
+  let res = {};
+  for(let f in src) {
+    res[f] = src[f];
+  }
+  return res;
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<footer>
+    <img class="logo" src="img/toast-ui.png" style="">
+    <div class="footer-text">Sex-pomelo API doc</div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+    <script>
+        var id = '_sub'.replace(/"/g, '_');
+        var selectedApi = document.getElementById(id); // do not use jquery selector
+        var $selectedApi = $(selectedApi);
+
+        $selectedApi.removeClass('hidden');
+        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+        showLnbApi();
+    </script>
+
+</body>
+</html>

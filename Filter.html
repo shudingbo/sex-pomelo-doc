@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Interface: Filter | Pomelo API</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+    
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="">
+        
+            <img src="img/toast-ui.png" width="100%" height="100%">
+        
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">Pomelo API</a></h1>
+        
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+    
+    <div class="lnb-api hidden"><h3>Modules</h3><ul><li><a href="module-appUtils.html">appUtils</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:appUtils_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-appUtils.html#.defaultConfiguration">defaultConfiguration</a></li><li><a href="module-appUtils.html#.loadDefaultComponents">loadDefaultComponents</a></li><li><a href="module-appUtils.html#.optComponents">optComponents</a></li><li><a href="module-appUtils.html#.startByType">startByType</a></li><li><a href="module-appUtils.html#.stopComps">stopComps</a></li></ul></div></li><li><a href="module-ModuleUtil.html">ModuleUtil</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:ModuleUtil_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-ModuleUtil.html#.loadModules">loadModules</a></li><li><a href="module-ModuleUtil.html#.startModules">startModules</a></li><li><a href="module-ModuleUtil.html#.startModules">startModules</a></li></ul></div></li><li><a href="module-utils.html">utils</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:utils_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-utils.html#.arrayDiff">arrayDiff</a></li><li><a href="module-utils.html#.checkPort">checkPort</a></li><li><a href="module-utils.html#.endsWith">endsWith</a></li><li><a href="module-utils.html#.extends">extends</a></li><li><a href="module-utils.html#.format">format</a></li><li><a href="module-utils.html#.hasChineseChar">hasChineseChar</a></li><li><a href="module-utils.html#.headHandler">headHandler</a></li><li><a href="module-utils.html#.invokeCallback">invokeCallback</a></li><li><a href="module-utils.html#.isLocal">isLocal</a></li><li><a href="module-utils.html#.isObject">isObject</a></li><li><a href="module-utils.html#.loadCluster">loadCluster</a></li><li><a href="module-utils.html#.ping">ping</a></li><li><a href="module-utils.html#.size">size</a></li><li><a href="module-utils.html#.startsWith">startsWith</a></li><li><a href="module-utils.html#.unicodeToUtf8">unicodeToUtf8</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="Application.html">Application</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Application_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="Application.html#.STATE_INITED">STATE_INITED</a></li><li><a href="Application.html#.STATE_START">STATE_START</a></li><li><a href="Application.html#.STATE_STARTED">STATE_STARTED</a></li><li><a href="Application.html#.STATE_STOPED">STATE_STOPED</a></li><li><a href="Application.html#backendSessionService">backendSessionService</a></li><li><a href="Application.html#channelService">channelService</a></li><li><a href="Application.html#components">components</a></li><li><a href="Application.html#curServer">curServer</a></li><li><a href="Application.html#mode">mode</a></li><li><a href="Application.html#serverId">serverId</a></li><li><a href="Application.html#serverType">serverType</a></li><li><a href="Application.html#sessionService">sessionService</a></li><li><a href="Application.html#startTime">startTime</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="Application.html#.this.rpcInvoke">this.rpcInvoke</a></li><li><a href="Application.html#addCrons">addCrons</a></li><li><a href="Application.html#addServers">addServers</a></li><li><a href="Application.html#after">after</a></li><li><a href="Application.html#afterStart">afterStart</a></li><li><a href="Application.html#before">before</a></li><li><a href="Application.html#beforeStopHook">beforeStopHook</a></li><li><a href="Application.html#configure">configure</a></li><li><a href="Application.html#configureLogger">configureLogger</a></li><li><a href="Application.html#disable">disable</a></li><li><a href="Application.html#disabled">disabled</a></li><li><a href="Application.html#enable">enable</a></li><li><a href="Application.html#enabled">enabled</a></li><li><a href="Application.html#filter">filter</a></li><li><a href="Application.html#get">get</a></li><li><a href="Application.html#getBackendSessionService">getBackendSessionService</a></li><li><a href="Application.html#getBase">getBase</a></li><li><a href="Application.html#getChannelService">getChannelService</a></li><li><a href="Application.html#getCurServer">getCurServer</a></li><li><a href="Application.html#getMaster">getMaster</a></li><li><a href="Application.html#getRoutes">getRoutes</a></li><li><a href="Application.html#getServerById">getServerById</a></li><li><a href="Application.html#getServerFromConfig">getServerFromConfig</a></li><li><a href="Application.html#getServerId">getServerId</a></li><li><a href="Application.html#getServers">getServers</a></li><li><a href="Application.html#getServersByType">getServersByType</a></li><li><a href="Application.html#getServersFromConfig">getServersFromConfig</a></li><li><a href="Application.html#getServerType">getServerType</a></li><li><a href="Application.html#getServerTypes">getServerTypes</a></li><li><a href="Application.html#getSessionService">getSessionService</a></li><li><a href="Application.html#globalAfter">globalAfter</a></li><li><a href="Application.html#globalBefore">globalBefore</a></li><li><a href="Application.html#globalFilter">globalFilter</a></li><li><a href="Application.html#init">init</a></li><li><a href="Application.html#isBackend">isBackend</a></li><li><a href="Application.html#isFrontend">isFrontend</a></li><li><a href="Application.html#isMaster">isMaster</a></li><li><a href="Application.html#load">load</a></li><li><a href="Application.html#loadConfig">loadConfig</a></li><li><a href="Application.html#loadConfigBaseApp">loadConfigBaseApp</a></li><li><a href="Application.html#registerAdmin">registerAdmin</a></li><li><a href="Application.html#removeCrons">removeCrons</a></li><li><a href="Application.html#removeServers">removeServers</a></li><li><a href="Application.html#replaceServers">replaceServers</a></li><li><a href="Application.html#require">require</a></li><li><a href="Application.html#route">route</a></li><li><a href="Application.html#rpcAfter">rpcAfter</a></li><li><a href="Application.html#rpcBefore">rpcBefore</a></li><li><a href="Application.html#rpcFilter">rpcFilter</a></li><li><a href="Application.html#set">set</a></li><li><a href="Application.html#start">start</a></li><li><a href="Application.html#stop">stop</a></li><li><a href="Application.html#transaction">transaction</a></li><li><a href="Application.html#use">use</a></li></ul></div></li><li><a href="BackendSession.html">BackendSession</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="BackendSession_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="BackendSession.html#bind">bind</a></li><li><a href="BackendSession.html#export">export</a></li><li><a href="BackendSession.html#get">get</a></li><li><a href="BackendSession.html#push">push</a></li><li><a href="BackendSession.html#pushAll">pushAll</a></li><li><a href="BackendSession.html#set">set</a></li><li><a href="BackendSession.html#unbind">unbind</a></li></ul></div></li><li><a href="BackendSessionService.html">BackendSessionService</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="BackendSessionService_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="BackendSessionService.html#bind">bind</a></li><li><a href="BackendSessionService.html#get">get</a></li><li><a href="BackendSessionService.html#getByUid">getByUid</a></li><li><a href="BackendSessionService.html#kickBySid">kickBySid</a></li><li><a href="BackendSessionService.html#kickByUid">kickByUid</a></li><li><a href="BackendSessionService.html#push">push</a></li><li><a href="BackendSessionService.html#pushAll">pushAll</a></li><li><a href="BackendSessionService.html#unbind">unbind</a></li></ul></div></li><li><a href="BaseComponent.html">BaseComponent</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="BaseComponent_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="BaseComponent.html#afterStart">afterStart</a></li><li><a href="BaseComponent.html#start">start</a></li><li><a href="BaseComponent.html#stop">stop</a></li></ul></div></li><li><a href="BaseCron.html">BaseCron</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="BaseCron_sub"></div></li><li><a href="BaseFilter.html">BaseFilter</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="BaseFilter_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="BaseFilter.html#after">after</a></li><li><a href="BaseFilter.html#before">before</a></li></ul></div></li><li><a href="BaseGameHandler.html">BaseGameHandler</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="BaseGameHandler_sub"></div></li><li><a href="BaseGameRemote.html">BaseGameRemote</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="BaseGameRemote_sub"></div></li><li><a href="BaseLifecycle.html">BaseLifecycle</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="BaseLifecycle_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="BaseLifecycle.html#.afterStartAll">afterStartAll</a></li><li><a href="BaseLifecycle.html#.afterStartup">afterStartup</a></li><li><a href="BaseLifecycle.html#.beforeShutdown">beforeShutdown</a></li><li><a href="BaseLifecycle.html#.beforeStartup">beforeStartup</a></li></ul></div></li><li><a href="Channel.html">Channel</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Channel_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Channel.html#add">add</a></li><li><a href="Channel.html#destroy">destroy</a></li><li><a href="Channel.html#getMember">getMember</a></li><li><a href="Channel.html#getMembers">getMembers</a></li><li><a href="Channel.html#getUserAmount">getUserAmount</a></li><li><a href="Channel.html#leave">leave</a></li><li><a href="Channel.html#pushMessage">pushMessage</a></li></ul></div></li><li><a href="ChannelService.html">ChannelService</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ChannelService_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ChannelService.html#broadcast">broadcast</a></li><li><a href="ChannelService.html#createChannel">createChannel</a></li><li><a href="ChannelService.html#destroyChannel">destroyChannel</a></li><li><a href="ChannelService.html#getChannel">getChannel</a></li><li><a href="ChannelService.html#pushMessageByUids">pushMessageByUids</a></li></ul></div></li><li><a href="ComponentDictionary.html">ComponentDictionary</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ComponentDictionary_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ComponentDictionary.html#start">start</a></li></ul></div></li><li><a href="ComponentProtobuf.html">ComponentProtobuf</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ComponentProtobuf_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ComponentProtobuf.html#stop">stop</a></li></ul></div></li><li><a href="ComponentProxy.html">ComponentProxy</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ComponentProxy_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ComponentProxy.html#addServers">addServers</a></li><li><a href="ComponentProxy.html#afterStart">afterStart</a></li><li><a href="ComponentProxy.html#removeServers">removeServers</a></li><li><a href="ComponentProxy.html#replaceServers">replaceServers</a></li><li><a href="ComponentProxy.html#rpcInvoke">rpcInvoke</a></li><li><a href="ComponentProxy.html#start">start</a></li></ul></div></li><li><a href="ComponentPushScheduler.html">ComponentPushScheduler</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ComponentPushScheduler_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ComponentPushScheduler.html#afterStart">afterStart</a></li><li><a href="ComponentPushScheduler.html#schedule">schedule</a></li><li><a href="ComponentPushScheduler.html#stop">stop</a></li></ul></div></li><li><a href="ComponentRemote.html">ComponentRemote</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ComponentRemote_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ComponentRemote.html#start">start</a></li><li><a href="ComponentRemote.html#stop">stop</a></li></ul></div></li><li><a href="ComponentSession.html">ComponentSession</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ComponentSession_sub"></div></li><li><a href="Connection.html">Connection</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Connection_sub"></div></li><li><a href="ConnectionService.html">ConnectionService</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ConnectionService_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ConnectionService.html#addLoginedUser">addLoginedUser</a></li><li><a href="ConnectionService.html#decreaseConnectionCount">decreaseConnectionCount</a></li><li><a href="ConnectionService.html#getConnectionInfo">getConnectionInfo</a></li><li><a href="ConnectionService.html#getStatisticsInfo">getStatisticsInfo</a></li><li><a href="ConnectionService.html#increaseConnectionCount">increaseConnectionCount</a></li><li><a href="ConnectionService.html#removeLoginedUser">removeLoginedUser</a></li><li><a href="ConnectionService.html#updateUserInfo">updateUserInfo</a></li></ul></div></li><li><a href="Connector.html">Connector</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Connector_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="Connector.html#.decode">decode</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="Connector.html#afterStart">afterStart</a></li><li><a href="Connector.html#start">start</a></li><li><a href="Connector.html#start">start</a></li><li><a href="Connector.html#start">start</a></li><li><a href="Connector.html#stop">stop</a></li></ul></div></li><li><a href="CountDownLatch.html">CountDownLatch</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="CountDownLatch_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="CountDownLatch.html#done">done</a></li></ul></div></li><li><a href="FilterHandlerSerial.html">FilterHandlerSerial</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="FilterHandlerSerial_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="FilterHandlerSerial.html#after">after</a></li><li><a href="FilterHandlerSerial.html#before">before</a></li></ul></div></li><li><a href="FilterHandlerTime.html">FilterHandlerTime</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="FilterHandlerTime_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="FilterHandlerTime.html#after">after</a></li><li><a href="FilterHandlerTime.html#before">before</a></li></ul></div></li><li><a href="FilterHandlerTimeout.html">FilterHandlerTimeout</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="FilterHandlerTimeout_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="FilterHandlerTimeout.html#after">after</a></li><li><a href="FilterHandlerTimeout.html#before">before</a></li></ul></div></li><li><a href="FilterHandlerTooBusy.html">FilterHandlerTooBusy</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="FilterHandlerTooBusy_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="FilterHandlerTooBusy.html#before">before</a></li></ul></div></li><li><a href="FilterRpcLog.html">FilterRpcLog</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="FilterRpcLog_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="FilterRpcLog.html#after">after</a></li><li><a href="FilterRpcLog.html#before">before</a></li></ul></div></li><li><a href="FilterToobusy.html">FilterToobusy</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="FilterToobusy_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="FilterToobusy.html#before">before</a></li></ul></div></li><li><a href="FrontendSession.html">FrontendSession</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="FrontendSession_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="FrontendSession.html#export">export</a></li></ul></div></li><li><a href="HandlerService.html">HandlerService</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="HandlerService_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="HandlerService.html#getHandler">getHandler</a></li><li><a href="HandlerService.html#handle">handle</a></li></ul></div></li><li><a href="MasterComp.html">MasterComp</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MasterComp_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MasterComp.html#start">start</a></li><li><a href="MasterComp.html#stop">stop</a></li></ul></div></li><li><a href="Monitor.html">Monitor</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Monitor_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Monitor.html#start">start</a></li><li><a href="Monitor.html#stop">stop</a></li></ul></div></li><li><a href="MonitorComp.html">MonitorComp</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="MonitorComp_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="MonitorComp.html#start">start</a></li><li><a href="MonitorComp.html#stop">stop</a></li></ul></div></li><li><a href="Pomelo.html">Pomelo</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Pomelo_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="Pomelo.html#components">components</a></li><li><a href="Pomelo.html#connectors">connectors</a></li><li><a href="Pomelo.html#events">events</a></li><li><a href="Pomelo.html#filters">filters</a></li><li><a href="Pomelo.html#pushSchedulers">pushSchedulers</a></li><li><a href="Pomelo.html#rpcFilters">rpcFilters</a></li><li><a href="Pomelo.html#version">version</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="Pomelo.html#createApp">createApp</a></li></ul></div></li><li><a href="Server.html">Server</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Server_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Server.html#addCrons">addCrons</a></li><li><a href="Server.html#globalHandle">globalHandle</a></li><li><a href="Server.html#handle">handle</a></li><li><a href="Server.html#removeCrons">removeCrons</a></li><li><a href="Server.html#start">start</a></li><li><a href="Server.html#stop">stop</a></li></ul></div></li><li><a href="ServerComp.html">ServerComp</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ServerComp_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ServerComp.html#afterStart">afterStart</a></li><li><a href="ServerComp.html#globalHandle">globalHandle</a></li><li><a href="ServerComp.html#handle">handle</a></li><li><a href="ServerComp.html#start">start</a></li><li><a href="ServerComp.html#stop">stop</a></li></ul></div></li><li><a href="ServiceFilter.html">ServiceFilter</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="ServiceFilter_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="ServiceFilter.html#after">after</a></li><li><a href="ServiceFilter.html#afterFilter">afterFilter</a></li><li><a href="ServiceFilter.html#before">before</a></li><li><a href="ServiceFilter.html#beforeFilter">beforeFilter</a></li></ul></div></li><li><a href="Session.html">Session</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Session_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Session.html#bind">bind</a></li><li><a href="Session.html#closed">closed</a></li><li><a href="Session.html#get">get</a></li><li><a href="Session.html#remove">remove</a></li><li><a href="Session.html#send">send</a></li><li><a href="Session.html#sendBatch">sendBatch</a></li><li><a href="Session.html#set">set</a></li><li><a href="Session.html#unbind">unbind</a></li></ul></div></li><li><a href="SessionService.html">SessionService</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="SessionService_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="SessionService.html#bind">bind</a></li><li><a href="SessionService.html#create">create</a></li><li><a href="SessionService.html#forEachBindedSession">forEachBindedSession</a></li><li><a href="SessionService.html#forEachSession">forEachSession</a></li><li><a href="SessionService.html#get">get</a></li><li><a href="SessionService.html#getByUid">getByUid</a></li><li><a href="SessionService.html#getClientAddressBySessionId">getClientAddressBySessionId</a></li><li><a href="SessionService.html#getSessionsCount">getSessionsCount</a></li><li><a href="SessionService.html#import">import</a></li><li><a href="SessionService.html#importAll">importAll</a></li><li><a href="SessionService.html#kick">kick</a></li><li><a href="SessionService.html#kickBySessionId">kickBySessionId</a></li><li><a href="SessionService.html#remove">remove</a></li><li><a href="SessionService.html#sendMessage">sendMessage</a></li><li><a href="SessionService.html#sendMessageByUid">sendMessageByUid</a></li><li><a href="SessionService.html#unbind">unbind</a></li></ul></div></li><li><a href="global.html#Socket">Socket</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Socket_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="global.html#Socket#disconnect">disconnect</a></li><li><a href="global.html#Socket#handshakeResponse">handshakeResponse</a></li><li><a href="global.html#Socket#send">send</a></li><li><a href="global.html#Socket#send">send</a></li><li><a href="global.html#Socket#sendBatch">sendBatch</a></li><li><a href="global.html#Socket#sendForce">sendForce</a></li><li><a href="global.html#Socket#sendRaw">sendRaw</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Namespaces</h3><ul><li><a href="SexPomelo.html">SexPomelo</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="SexPomelo_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="SexPomelo.html#Application">Application</a></li><li><a href="SexPomelo.html#BaseComponent">BaseComponent</a></li><li><a href="SexPomelo.html#BaseFilter">BaseFilter</a></li><li><a href="SexPomelo.html#Cron">Cron</a></li><li><a href="SexPomelo.html#GameHandler">GameHandler</a></li><li><a href="SexPomelo.html#GameRemote">GameRemote</a></li><li><a href="SexPomelo.html#Lifecycle">Lifecycle</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Interfaces</h3><ul><li><a href="Component.html">Component</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Component_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Component.html#afterStart">afterStart</a></li><li><a href="Component.html#start">start</a></li><li><a href="Component.html#stop">stop</a></li></ul></div></li><li><a href="Filter.html">Filter</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Filter_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Filter.html#after">after</a></li><li><a href="Filter.html#before">before</a></li></ul></div></li><li><a href="LifeCycle.html">LifeCycle</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="LifeCycle_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="LifeCycle.html#afterStartAll">afterStartAll</a></li><li><a href="LifeCycle.html#afterStartup">afterStartup</a></li><li><a href="LifeCycle.html#beforeShutdown">beforeShutdown</a></li><li><a href="LifeCycle.html#beforeStartup">beforeStartup</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Global</h3><ul><li class="hidden"><a href="global.html#AutoFilters">AutoFilters</a></li><li class="hidden"><a href="global.html#AutoRpcFilters">AutoRpcFilters</a></li><li><a href="global.html#Command">Command</a></li><li><a href="global.html#configure">configure</a></li><li><a href="global.html#create">create</a></li><li class="hidden"><a href="global.html#DefaultComponents">DefaultComponents</a></li><li class="hidden"><a href="global.html#DefaultConnectors">DefaultConnectors</a></li><li><a href="global.html#Processor">Processor</a></li><li class="hidden"><a href="global.html#ServerInfo">ServerInfo</a></li><li><a href="global.html#Switcher">Switcher</a></li></ul></div>
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>Filter</h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+                <div class="description">Interface for classes that Filter</div>
+            
+
+            
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+                
+
+<dt>
+    
+        <h4 class="name" id="after">
+            
+                <span class="type-signature"></span>after<span class="signature">(err, msg, session, resp, next)</span><span class="type-signature"></span>
+                
+            
+            <div class="container-source members">
+                <code><a href="base_base_filter.js.html">base/base_filter.js</a></code>,
+                <code><a href="base_base_filter.js.html#line19">line 19</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        After filter
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>err</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>msg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>session</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>resp</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>next</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+    
+        <h4 class="name" id="before">
+            
+                <span class="type-signature"></span>before<span class="signature">(msg, session, next)</span><span class="type-signature"></span>
+                
+            
+            <div class="container-source members">
+                <code><a href="base_base_filter.js.html">base/base_filter.js</a></code>,
+                <code><a href="base_base_filter.js.html#line9">line 9</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Before filter
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>msg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">message</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>session</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>next</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">callback Function</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            </dl>
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<footer>
+    <img class="logo" src="img/toast-ui.png" style="">
+    <div class="footer-text">Sex-pomelo API doc</div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+    <script>
+        var id = 'Filter_sub'.replace(/"/g, '_');
+        var selectedApi = document.getElementById(id); // do not use jquery selector
+        var $selectedApi = $(selectedApi);
+
+        $selectedApi.removeClass('hidden');
+        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+        showLnbApi();
+    </script>
+
+</body>
+</html>
