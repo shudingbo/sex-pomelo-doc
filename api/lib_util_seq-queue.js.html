@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Source: lib/util/pathUtil.js | Pomelo API</title>
+    <title>Source: lib/util/seq-queue.js | Pomelo API</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -48,110 +48,229 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>"use strict";
+            <pre class="prettyprint source linenums"><code>'use strict';
+const EventEmitter = require('events');
 
-const fs = require('fs');
-const path = require('path');
-const Constants = require('./constants');
-let exp = module.exports;
+const DEFAULT_TIMEOUT = 3000;
+const INIT_ID = 0;
+const EVENT_CLOSED = 'closed';
+const EVENT_DRAINED = 'drained';
 
 /**
- * Get system remote service path
+ * Instance a new queue
  *
- * @param  {String} role server role: frontend, backend
- * @return {String}      path string if the path exist else null
+ * @param {number} timeout a global timeout for new queue
+ * @class
+ * @constructor
  */
-exp.getSysRemotePath = function(role) {
-  let p = path.join(__dirname, '/../common/remote/', role);
-  return fs.existsSync(p) ? p : null;
-};
+class SeqQueue extends EventEmitter
+{
+    constructor(timeout)
+    {
+        super();
+        if (timeout &amp;&amp; timeout > 0)
+        {
+            this.timeout = timeout;
+        }
+        else
+        {
+            this.timeout = DEFAULT_TIMEOUT;
+        }
 
-/**
- * Get user remote service path
- *
- * @param  {String} appBase    application base path
- * @param  {String} serverType server type
- * @return {String}            path string if the path exist else null
- */
-exp.getUserRemotePath = function(appBase, serverType) {
-  let p = path.join(appBase, '/app/servers/', serverType, Constants.DIR.REMOTE);
-  return fs.existsSync(p) ? p : null;
-};
-
-/**
- * Get user remote cron path
- * 
- * @param  {String} appBase    application base path
- * @param  {String} serverType server type
- * @return {String}            path string if the path exist else null
- */
-exp.getCronPath = function(appBase, serverType) {
-  let p = path.join(appBase, '/app/servers/', serverType, Constants.DIR.CRON);
-  return fs.existsSync(p) ? p : null;
-};
-
-/**
- * List all the subdirectory names of user remote directory
- * which hold the codes for all the server types.
- *
- * @param  {String} appBase application base path
- * @return {Array}         all the subdiretory name under servers/
- */
-exp.listUserRemoteDir = function(appBase) {
-  let base = path.join(appBase, '/app/servers/');
-  let files = fs.readdirSync(base);
-  return files.filter(function(fn) {
-    if(fn.charAt(0) === '.') {
-      return false;
+        this.status = SeqQueueManager.STATUS_IDLE;
+        this.curId = INIT_ID;
+        this.queue = [];
     }
 
-    return fs.statSync(path.join(base, fn)).isDirectory();
-  });
-};
+    /**
+     * Add a task into queue.
+     *
+     * @param fn new request
+     * @param onTimeout callback when task timeout
+     * @param timeout timeout for current request. take the global timeout if this is invalid
+     * @returns true or false
+     */
+    push(fn, onTimeout, timeout)
+    {
+        if (this.status !== SeqQueueManager.STATUS_IDLE &amp;&amp; this.status !== SeqQueueManager.STATUS_BUSY)
+        {
+            // ignore invalid status
+            return false;
+        }
+
+        if (typeof fn !== 'function')
+        {
+            throw new Error('fn should be a function.');
+        }
+        this.queue.push({
+            fn        : fn,
+            ontimeout : onTimeout,
+            timeout   : timeout});
+
+        if (this.status === SeqQueueManager.STATUS_IDLE)
+        {
+            this.status = SeqQueueManager.STATUS_BUSY;
+            process.nextTick(this._next.bind(this), this.curId);
+        }
+        return true;
+    }
+
+    /**
+     * Close queue
+     *
+     * @param {boolean} force if true will close the queue immediately else will execute the rest task in queue
+     */
+    close(force)
+    {
+        if (this.status !== SeqQueueManager.STATUS_IDLE &amp;&amp; this.status !== SeqQueueManager.STATUS_BUSY)
+        {
+            // ignore invalid status
+            return;
+        }
+
+        if (force)
+        {
+            this.status = SeqQueueManager.STATUS_DRAINED;
+            if (this.timerId)
+            {
+                clearTimeout(this.timerId);
+                this.timerId = undefined;
+            }
+            this.emit(EVENT_DRAINED);
+        }
+        else
+        {
+            this.status = SeqQueueManager.STATUS_CLOSED;
+            this.emit(EVENT_CLOSED);
+        }
+    }
+
+    /**
+     * Invoke next task
+     *
+     * @param {String|Number} tid last executed task id
+     * @api private
+     */
+    _next(tid)
+    {
+        if (tid !== this.curId || this.status !== SeqQueueManager.STATUS_BUSY &amp;&amp; this.status !== SeqQueueManager.STATUS_CLOSED)
+        {
+            // ignore invalid next call
+            return;
+        }
+
+        if (this.timerId)
+        {
+            clearTimeout(this.timerId);
+            this.timerId = undefined;
+        }
+
+        const task = this.queue.shift();
+        if (!task)
+        {
+            if (this.status === SeqQueueManager.STATUS_BUSY)
+            {
+                this.status = SeqQueueManager.STATUS_IDLE;
+                this.curId++;	// modify curId to invalidate timeout task
+            }
+            else
+            {
+                this.status = SeqQueueManager.STATUS_DRAINED;
+                this.emit(EVENT_DRAINED);
+            }
+            return;
+        }
+        task.id = ++this.curId;
+
+        let timeout = task.timeout > 0 ? task.timeout : this.timeout;
+        timeout = timeout > 0 ? timeout : DEFAULT_TIMEOUT;
+        this.timerId = setTimeout(() =>
+        {
+            process.nextTick(this._next.bind(this), task.id);
+            this.emit('timeout', task);
+            if (task.ontimeout)
+            {
+                task.ontimeout();
+            }
+        }, timeout);
+
+        try
+        {
+            task.fn({
+                done : () =>
+                {
+                    const res = task.id === this.curId;
+                    process.nextTick(this._next.bind(this), task.id);
+                    return res;
+                }
+            });
+        }
+        catch (err)
+        {
+            this.emit('error', err, task);
+            process.nextTick(this._next.bind(this), task.id);
+        }
+    }
+}
+
+
 
 /**
- * Compose remote path record
+ * Queue manager.
  *
- * @param  {String} namespace  remote path namespace, such as: 'sys', 'user'
- * @param  {String} serverType
- * @param  {String} path       remote service source path
- * @return {Object}            remote path record
+ * @module
  */
-exp.remotePathRecord = function(namespace, serverType, path) {
-  return {namespace: namespace, serverType: serverType, path: path};
-};
+const SeqQueueManager = module.exports;
 
 /**
- * Get handler path
+ * Queue status: idle, welcome new tasks
  *
- * @param  {String} appBase    application base path
- * @param  {String} serverType server type
- * @return {String}            path string if the path exist else null
+ * @const
+ * @type {number}
+ * @memberOf SeqQueueManager
  */
-exp.getHandlerPath = function(appBase, serverType) {
-  let p = path.join(appBase, '/app/servers/', serverType, Constants.DIR.HANDLER);
-  return fs.existsSync(p) ? p : null;
-};
+SeqQueueManager.STATUS_IDLE = 0;
 
 /**
- * Get admin script root path.
+ * Queue status: busy, queue is working for some tasks now
  *
- * @param  {String} appBase application base path
- * @return {String}         script path string
+ * @const
+ * @type {number}
+ * @memberOf SeqQueueManager
  */
-exp.getScriptPath = function(appBase) {
-  return path.join(appBase, Constants.DIR.SCRIPT);
-};
+SeqQueueManager.STATUS_BUSY = 1;
 
 /**
- * Get logs path.
+ * Queue status: closed, queue has closed and would not receive task any more
+ * 					and is processing the remaining tasks now.
  *
- * @param  {String} appBase application base path
- * @return {String}         logs path string
+ * @const
+ * @type {number}
+ * @memberOf SeqQueueManager
  */
-exp.getLogPath = function(appBase) {
-  return path.join(appBase, Constants.DIR.LOG);
-};</code></pre>
+SeqQueueManager.STATUS_CLOSED = 2;
+
+/**
+ * Queue status: drained, queue is ready to be destroy
+ *
+ * @const
+ * @type {number}
+ * @memberOf SeqQueueManager
+ */
+SeqQueueManager.STATUS_DRAINED = 3;
+
+/**
+ * Create Sequence queue
+ *
+ * @param  {number} timeout a global timeout for the new queue instance
+ * @return {object}         new queue instance
+ * @memberOf SeqQueueManager
+ */
+SeqQueueManager.createQueue = function(timeout)
+{
+    return new SeqQueue(timeout);
+};
+</code></pre>
         </article>
     </section>
 

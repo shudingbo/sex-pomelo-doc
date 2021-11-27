@@ -1,10 +1,8 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Source: lib/util/pathUtil.js | Pomelo API</title>
+    <title>Module: lib/util/seq-queue | Pomelo API</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -45,115 +43,124 @@
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>"use strict";
+        <h2>lib/util/seq-queue</h2>
+        
+            
+        
+    
+</header>
 
-const fs = require('fs');
-const path = require('path');
-const Constants = require('./constants');
-let exp = module.exports;
+<article>
+    
+        <div class="container-overview">
+        
+            
+                <div class="description">Queue manager.</div>
+            
 
-/**
- * Get system remote service path
- *
- * @param  {String} role server role: frontend, backend
- * @return {String}      path string if the path exist else null
- */
-exp.getSysRemotePath = function(role) {
-  let p = path.join(__dirname, '/../common/remote/', role);
-  return fs.existsSync(p) ? p : null;
-};
+            
+                
 
-/**
- * Get user remote service path
- *
- * @param  {String} appBase    application base path
- * @param  {String} serverType server type
- * @return {String}            path string if the path exist else null
- */
-exp.getUserRemotePath = function(appBase, serverType) {
-  let p = path.join(appBase, '/app/servers/', serverType, Constants.DIR.REMOTE);
-  return fs.existsSync(p) ? p : null;
-};
+<dt>
+    
+</dt>
+<dd>
 
-/**
- * Get user remote cron path
- * 
- * @param  {String} appBase    application base path
- * @param  {String} serverType server type
- * @return {String}            path string if the path exist else null
- */
-exp.getCronPath = function(appBase, serverType) {
-  let p = path.join(appBase, '/app/servers/', serverType, Constants.DIR.CRON);
-  return fs.existsSync(p) ? p : null;
-};
+    
 
-/**
- * List all the subdirectory names of user remote directory
- * which hold the codes for all the server types.
- *
- * @param  {String} appBase application base path
- * @return {Array}         all the subdiretory name under servers/
- */
-exp.listUserRemoteDir = function(appBase) {
-  let base = path.join(appBase, '/app/servers/');
-  let files = fs.readdirSync(base);
-  return files.filter(function(fn) {
-    if(fn.charAt(0) === '.') {
-      return false;
-    }
+    
 
-    return fs.statSync(path.join(base, fn)).isDirectory();
-  });
-};
+    
 
-/**
- * Compose remote path record
- *
- * @param  {String} namespace  remote path namespace, such as: 'sys', 'user'
- * @param  {String} serverType
- * @param  {String} path       remote service source path
- * @return {Object}            remote path record
- */
-exp.remotePathRecord = function(namespace, serverType, path) {
-  return {namespace: namespace, serverType: serverType, path: path};
-};
+    
 
-/**
- * Get handler path
- *
- * @param  {String} appBase    application base path
- * @param  {String} serverType server type
- * @return {String}            path string if the path exist else null
- */
-exp.getHandlerPath = function(appBase, serverType) {
-  let p = path.join(appBase, '/app/servers/', serverType, Constants.DIR.HANDLER);
-  return fs.existsSync(p) ? p : null;
-};
+    
 
-/**
- * Get admin script root path.
- *
- * @param  {String} appBase application base path
- * @return {String}         script path string
- */
-exp.getScriptPath = function(appBase) {
-  return path.join(appBase, Constants.DIR.SCRIPT);
-};
+    
 
-/**
- * Get logs path.
- *
- * @param  {String} appBase application base path
- * @return {String}         logs path string
- */
-exp.getLogPath = function(appBase) {
-  return path.join(appBase, Constants.DIR.LOG);
-};</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
@@ -170,7 +177,7 @@ exp.getLogPath = function(appBase) {
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = '_sub'.replace(/"/g, '_');
+        var id = 'module:lib/util/seq-queue_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 
